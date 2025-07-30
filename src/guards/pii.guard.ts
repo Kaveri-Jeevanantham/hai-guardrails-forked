@@ -81,6 +81,63 @@ const PII_REGEX_REGISTRY = [
 		regex: /\bDEA[-:\s]*[A-Z]{2}[0-9]{7}\b/gi,
 		replacement: '[REDACTED-DEA]',
 	},
+	// Additional Healthcare Identifiers
+	{
+		id: 'hicn',
+		name: 'HICN',
+		description: 'Health Insurance Claim Numbers (Medicare)',
+		regex: /\b\d{3}[-.]?\d{2}[-.]?\d{4}[A-Z]\b/g,
+		replacement: '[REDACTED-HICN]',
+	},
+	{
+		id: 'patient-id',
+		name: 'Patient ID',
+		description: 'Patient identifiers with various prefixes',
+		regex: /\b(PID|PATID|PAT)[-:]?\s*[A-Z0-9]{4,12}\b/gi,
+		replacement: '[REDACTED-PATIENT-ID]',
+	},
+	{
+		id: 'encounter-id',
+		name: 'Encounter ID',
+		description: 'Healthcare encounter identifiers',
+		regex: /\b(ENC|ENCOUNTER)[-:]?\s*[A-Z0-9]{4,12}\b/gi,
+		replacement: '[REDACTED-ENCOUNTER-ID]',
+	},
+	{
+		id: 'claim-number',
+		name: 'Claim Number',
+		description: 'Insurance claim numbers',
+		regex: /\b(CLM|CL|CLAIM)[-:]?\s*[A-Z0-9]{6,15}\b/gi,
+		replacement: '[REDACTED-CLAIM]',
+	},
+	{
+		id: 'prescription-id',
+		name: 'Prescription ID',
+		description: 'Prescription identifiers',
+		regex: /\b(RX|PRX)[-:]?\s*[A-Z0-9]{4,12}\b/gi,
+		replacement: '[REDACTED-PRESCRIPTION]',
+	},
+	{
+		id: 'insurance-id',
+		name: 'Insurance ID',
+		description: 'Health insurance policy identifiers',
+		regex: /\b(BCBS|AETNA|HUMANA|POL)[-:]?\s*[A-Z0-9]{6,15}\b/gi,
+		replacement: '[REDACTED-INSURANCE]',
+	},
+	{
+		id: 'account-number',
+		name: 'Account Number',
+		description: 'Healthcare account numbers',
+		regex: /\bACC#[A-Z0-9]{6,12}\b/gi,
+		replacement: '[REDACTED-ACCOUNT]',
+	},
+	{
+		id: 'device-id',
+		name: 'Device ID',
+		description: 'Medical device identifiers (UDI)',
+		regex: /\bUDI[-:]?\s*[A-Z0-9]{8,15}\b/gi,
+		replacement: '[REDACTED-DEVICE-ID]',
+	},
 ] satisfies PIIRegex[]
 
 function redactPII(input: string, patterns: PIIRegex[]): string {
